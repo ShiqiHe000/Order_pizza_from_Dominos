@@ -1,4 +1,4 @@
-from pizzapy import Customer, StoreLocator, Order
+from pizzapy import Customer, StoreLocator, Order, ConsoleInput
 
 # search menu 
 def searchMenu(menu):
@@ -33,20 +33,28 @@ def printOrder(order):
     if order.data['Products']:
         for item in order.data['Products']:
             price += float(item['Price'])
-            print(item['Name'] + " $" +item['Price'])
+            print("Name: " + item['Name'] + 
+            " | Price: $" + item['Price'] + " | Item Code: " + item['Code'])
     print("\nYour order total is: $" + str(price) + " + TAX.")
 
 # allows the customer to remove the selected order
 def removeOrder(order):
-    print("\nDo you want to remove any order?")
-    wantToRemove = input("(y/n): ")
-    if wantToRemove in ['Yes', 'y']:
-        pass
+    while True:
+        print("\nDo you want to remove any order?")
+        wantToRemove = input("(y/n): ")
+
+        if wantToRemove in ['Yes', 'y']:
+            remove_item = input("Enter the item code here: \n").strip().upper()
+            order.remove_item(remove_item)
+        else:
+            break
+    print("\nYour new order is: \n")
+    printOrder(order)
+
 
 
 # customer info
-customer = Customer("Shiqi", "He", "example@gmail.com", \
-                    "1234567890", "75 Laurier Ave. E, Ottawa, ON, K1N 6N5")
+customer = ConsoleInput.get_new_customer()
 
 # find the dominos
 my_local_dominos = StoreLocator.find_closest_store_to_customer(customer)
@@ -68,3 +76,7 @@ while True:
 
 print("\nYour order is as follows:\n")
 printOrder(order)
+removeOrder(order)
+
+# credit card info
+card = ConsoleInput.get_credit_card()
