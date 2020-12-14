@@ -60,7 +60,11 @@ customer = ConsoleInput.get_new_customer()
 my_local_dominos = StoreLocator.find_closest_store_to_customer(customer)
 print("Your closest Domino: \n" + str(my_local_dominos))
 
-#print("\nHere is the menu: \n")
+choose = input("\nWould you like to choose this store (y/n)?")
+if choose.lower() not in ['yes', 'y']:
+    print("\nBye-bye!")    
+    quit()
+
 
 # find menu
 menu = my_local_dominos.get_menu()
@@ -78,5 +82,19 @@ print("\nYour order is as follows:\n")
 printOrder(order)
 removeOrder(order)
 
-# credit card info
-card = ConsoleInput.get_credit_card()
+# payment
+payment = input("\nWould you like to pay in CASH or CREDIT CARD? (CASH/CREDIT CARD)" )
+if payment.loer() in ['credit card', 'card']:
+    card = ConsoleInput.get_credit_card()
+else:
+    card = False
+
+# place the order
+place_order = input("Do you want to place the order (y/n)?")
+if place_order.lower() not in ['yes', 'y']:
+    print('Bye-bye!')
+    quit()
+
+order.place(card)
+my_local_dominos.place_order(order, card)
+print("\nOrder Placed!")

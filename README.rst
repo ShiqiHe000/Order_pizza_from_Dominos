@@ -1,14 +1,12 @@
-pizzapy
-=======
+Order Your Pizza from Dominos
+===================================================================================
+This Python project uses Dominos API to order pizza. 
+This work is developed based on [techwithtim](https://github.com/techwithtim) 
+and [Magicjarvis](https://github.com/Magicjarvis) their work.
 
-*This has been forked from @Magicjarvis the readme below is the same as his repository..* 
-
-Disclaimer
------------
-This is my fork of https://github.com/gamagori/pizzapi
-It's heavily modified and not well documented, but i'm going to get to that. the below example should work though.
-
-sorry! was kind of in a rush this morning.
+Disclaimer 
+-----------------------------------
+The instruction below is from [Magicjarvis](https://github.com/Magicjarvis/pizzapi). 
 
 Setup
 -----
